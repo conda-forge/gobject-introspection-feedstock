@@ -28,7 +28,7 @@ requirements:
     - cairo
     - flex
     - gettext  # [osx]
-    - glib
+    - glib =2.56.*
     - libffi
     - python
   run:
