@@ -22,32 +22,51 @@ build:
 
 requirements:
   build:
-    - pkg-config  # [not win]
     - {{ compiler('c') }}
-  host:
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxrender-devel') }}      # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libxau-devel') }}          # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - pkg-config                         # [not win]
+    - libtool                            # [not win]
+    - automake                           # [not win]
+    - autoconf                           # [not win]
+    - make                               # [not win]
     - bison
-    - cairo
     - flex
-    - gettext  # [osx]
+  host:
     - glib
     - libffi
+    - cairo
+    - gettext        # [osx]
+    - pthread-stubs
+    - libxcb         # [linux]
     - python
+    - zlib           # [linux or win]
+    - pcre           # [linux or win]
   run:
-    - glib
-    - libffi
     - python
 
 test:
   commands:
-    - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
-    - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - test -f $PREFIX/lib/libgirepository-*${SHLIB_EXT}  # [not win]
 
 about:
   home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
   license: LGPLv2+
   license_family: LGPL
   license_file: COPYING
-  summary: 'Middleware for binding GObject-based code to other languages.'
+  summary: 'Middleware for binding GObject-based code to other languages'
+  description: |
+    GObject introspection is a middleware layer between C libraries (using GObject) 
+    and language bindings. The C library can be scanned at compile time and generate 
+    a metadata file, in addition to the actual native C library. Then at runtime, 
+    language bindings can read this metadata and automatically provide bindings to 
+    call into the C library.
+  doc_url: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection#Documentation
+  dev_url: https://git.gnome.org//browse/gobject-introspection/tree/
+  doc_source_url: https://git.gnome.org/browse/gobject-introspection/tree/docs
 
 extra:
   recipe-maintainers:
