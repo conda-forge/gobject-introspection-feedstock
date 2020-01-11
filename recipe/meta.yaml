@@ -11,7 +11,6 @@ source:
   url: http://ftp.gnome.org/pub/gnome/sources/{{ name }}/{{ '.'.join(version.split('.')[:2]) }}/{{ name }}-{{ version }}.tar.xz
   sha256: 476379bde8d080d92dd1bb1684f6aa8d79d90ddb81fc85dfa3576e36f9777ab6
   patches:
-    - windows-python-cmd.patch
     - meson-rpaths.patch  # [linux]
     - gcc7-rpath-link.patch  # [linux]
 
