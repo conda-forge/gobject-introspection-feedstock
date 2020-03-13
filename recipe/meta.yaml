@@ -19,7 +19,7 @@ source:
     - gcc7-rpath-link.patch  # [linux]
 
 build:
-  number: 1002
+  number: 1003
   skip: true  # [py<35]
 
 requirements:
