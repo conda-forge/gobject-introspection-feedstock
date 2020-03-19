@@ -20,7 +20,7 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX_M%/lib/pkgconfig;%LIBRARY_PREFIX_M%/share/pk
 set "PYTHONLEGACYWINDOWSSTDIO=1"
 set "PYTHONIOENCODING=UTF-8"
 
-%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dcairo=true -Dpython=%PYTHON% ..
+%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dcairo=true -Dcairo-libname=cairo-gobject.dll -Dpython=%PYTHON% ..
 if errorlevel 1 exit 1
 
 ninja -v

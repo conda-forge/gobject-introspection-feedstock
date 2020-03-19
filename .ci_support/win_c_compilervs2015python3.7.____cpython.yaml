@@ -1,15 +1,11 @@
 c_compiler:
-- gcc
-c_compiler_version:
-- '8'
+- vs2015
 cairo:
 - '1.16'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-docker_image:
-- condaforge/linux-anvil-ppc64le
 glib:
 - '2.58'
 libffi:
@@ -23,4 +19,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- '3.6'
+- 3.7.* *_cpython
+zip_keys:
+- - python
+  - c_compiler
