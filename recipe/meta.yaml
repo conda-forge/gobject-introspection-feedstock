@@ -14,7 +14,7 @@ source:
     - test-fix.patch  # [linux]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<35]
 
 requirements:
