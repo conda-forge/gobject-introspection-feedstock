@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '8'
+- '9'
 cairo:
 - '1.16'
 cdt_name:
@@ -13,7 +13,7 @@ channel_targets:
 docker_image:
 - quay.io/condaforge/linux-anvil-ppc64le
 glib:
-- 2.64.6
+- '2.66'
 libffi:
 - '3.2'
 pin_run_as_build:
