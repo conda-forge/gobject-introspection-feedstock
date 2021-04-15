@@ -68,5 +68,6 @@ extra:
   recipe-maintainers:
     - pkgw
     - ocefpaf
+    - ryanvolz
     - scopatz
     - tschoonj
