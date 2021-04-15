@@ -15,6 +15,8 @@ source:
     - test-fix.patch  # [linux]
     # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/265
     - pkg-config.patch
+    # this patch works in concert with using meson < 0.56 to "fix" pypy build
+    - 0001-HACK-for-conda-forge-do-not-check-if-python-is-found.patch
 
 build:
   number: 2
@@ -26,7 +28,9 @@ requirements:
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ posix }}bison
     - {{ posix }}flex
-    - meson
+    # use last working meson to get PyPy build to work
+    # see https://github.com/mesonbuild/meson/issues/8570
+    - meson 0.55.*
     - ninja
     - {{ posix }}patch
     - {{ native }}pkg-config

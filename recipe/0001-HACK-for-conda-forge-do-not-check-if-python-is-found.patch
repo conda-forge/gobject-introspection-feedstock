@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Thu, 15 Apr 2021 18:20:50 -0400
+Subject: [PATCH] HACK for conda-forge, do not check if python is found.
+
+This is a work-around for PyPy builds because the python dependency will
+work anyway despite the "found" bit not being set. This is only useful
+when meson doesn't fail the build automatically when the python
+dependency is not "found", which seems to be true for meson < 0.56.
+---
+ giscanner/meson.build | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/giscanner/meson.build b/giscanner/meson.build
+index 098b7b6b..89ac3f56 100644
+--- a/giscanner/meson.build
++++ b/giscanner/meson.build
+@@ -105,10 +105,12 @@ else
+   python_ext_dep = python.dependency().partial_dependency(compile_args: true)
+ endif
+ 
+-if not python_ext_dep.found()
+-  # For example if Python is 32bit but we require a 64bit variant
+-  error('Python installation not useable')
+-endif
++# HACK for conda-forge pypy, do not check if found because it will work anyway
++# even though the "found" bit is not set
++# if not python_ext_dep.found()
++#   # For example if Python is 32bit but we require a 64bit variant
++#   error('Python installation not useable')
++# endif
+ 
+ giscanner_pymod = python.extension_module('_giscanner', ['giscannermodule.c'],
+   link_with: giscanner_lib,
+-- 
+2.30.2
+
