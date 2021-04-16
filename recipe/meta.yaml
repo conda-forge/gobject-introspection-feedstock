@@ -17,6 +17,7 @@ source:
     - pkg-config.patch
     # this patch works in concert with using meson < 0.56 to "fix" pypy build
     - 0001-HACK-for-conda-forge-do-not-check-if-python-is-found.patch
+    - 0002-Don-t-add-build_root-giscanner-to-PYTHONPATH-for-run.patch
 
 build:
   number: 2
