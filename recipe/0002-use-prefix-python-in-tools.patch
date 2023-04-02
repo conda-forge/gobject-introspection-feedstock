@@ -6,7 +6,7 @@ diff -ur a/tools/meson.build b/tools/meson.build
    python_cmd = '/usr/bin/env ' + python.path()
  else
 -  python_cmd = '/usr/bin/env python@0@'.format(python.language_version().split('.')[0])
-+  python_cmd = join_paths(get_option('prefix'), 'bin', 'python')
++  python_cmd = join_paths(join_paths(get_option('prefix'), 'bin'), 'python')
  endif
  
  tool_output = []
