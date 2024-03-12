@@ -17,8 +17,6 @@ source:
     - test-fix.patch  # [linux]
     # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/265
     - pkg-config.patch
-    # workaround for conflicting "import ast", should not be necessary once PyPy is updated
-    - 0001-Don-t-add-build_root-giscanner-to-PYTHONPATH-for-run.patch
 
 build:
   number: 0

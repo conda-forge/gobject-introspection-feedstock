@@ -1,8 +1,8 @@
 diff --git a/tools/meson.build b/tools/meson.build
-index 46b487e..ea82c01 100644
+index 7237a0b..1225413 100644
 --- a/tools/meson.build
 +++ b/tools/meson.build
-@@ -64,7 +64,6 @@ gircompiler = executable('g-ir-compiler', 'compiler.c',
+@@ -66,7 +66,6 @@ gircompiler = executable('g-ir-compiler', 'compiler.c',
    install: true,
    c_args: custom_c_args,
  )
@@ -10,14 +10,15 @@ index 46b487e..ea82c01 100644
  
  girgenerate = executable('g-ir-generate', 'generate.c',
    dependencies: [
-@@ -74,11 +73,15 @@ girgenerate = executable('g-ir-generate', 'generate.c',
+@@ -77,7 +76,6 @@ girgenerate = executable('g-ir-generate', 'generate.c',
    install: true,
    c_args: custom_c_args,
  )
 -meson.override_find_program('g-ir-generate', girgenerate)
  
  girinspect = executable('g-ir-inspect', 'g-ir-inspect.c',
-   dependencies: girepo_dep,
+   dependencies: [
+@@ -87,4 +85,9 @@ girinspect = executable('g-ir-inspect', 'g-ir-inspect.c',
    install: true,
    c_args: custom_c_args,
  )
@@ -29,20 +30,20 @@ index 46b487e..ea82c01 100644
 +  meson.override_find_program('g-ir-inspect', girinspect)
 +endif
 diff --git a/gir/meson.build b/gir/meson.build
-index 09714cc..0ceb0ae 100644
+index 3a01683..cfc52b7 100644
 --- a/gir/meson.build
 +++ b/gir/meson.build
-@@ -510,10 +510,11 @@ gir_files += custom_target('gir-girepository',
+@@ -506,10 +506,11 @@ gir_files += custom_target('gir-girepository',
  )
  
  typelibs = []
 +local_gircompiler = find_program('g-ir-compiler', native: false, required : false)
  if get_option('gi_cross_binary_wrapper') != ''
--    gircompiler_command = [get_option('gi_cross_binary_wrapper'), gircompiler.full_path(), ]
-+    gircompiler_command = [get_option('gi_cross_binary_wrapper'), local_gircompiler.full_path(), ]
+-  gircompiler_command = [get_option('gi_cross_binary_wrapper'), gircompiler.full_path(), ]
++  gircompiler_command = [get_option('gi_cross_binary_wrapper'), local_gircompiler.full_path(), ]
  else
--    gircompiler_command = [gircompiler, ]
-+    gircompiler_command = [local_gircompiler, ]
+-  gircompiler_command = [gircompiler, ]
++  gircompiler_command = [local_gircompiler, ]
  endif
  
- gircompiler_command += [ '-o', '@OUTPUT@', '@INPUT@',
+ gircompiler_command += [
