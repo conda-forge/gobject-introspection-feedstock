@@ -1,10 +1,9 @@
-{% set local_glib_pin = ">=2.78" %}
 {% set name = "gobject-introspection" %}
 {% set version = "1.80.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 {% set prefix = 'Library/' if win else '' %}
-{% set local_glib_pin = '>=2.78' %}
+{% set local_glib_pin = '>=2.80' %}
 
 package:
   name: {{ name|lower }}-split
@@ -47,6 +46,7 @@ requirements:
     - glib {{ local_glib_pin }}
     - glib
     - libffi
+    - packaging
     - python
     - setuptools  # [py>311]
 
