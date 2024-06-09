@@ -1,0 +1,2 @@
+export GI_TYPELIB_PATH_CONDA_BACKUP="${GI_TYPELIB_PATH:-}"
+export GI_TYPELIB_PATH="$CONDA_PREFIX/lib/girepository-1.0"
