@@ -36,6 +36,7 @@ requirements:
     - {{ posix }}patch
     - {{ native }}pkg-config
     - {{ compiler('c') }}
+    - {{ stdlib('c') }}
     # This dep is intentionally written twice; the second time allows
     # conda-build to add a global pin if needed.
     - glib {{ local_glib_pin }}  # [build_platform != target_platform]
@@ -62,6 +63,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
         - cairo
         # Intentional double-listing for conda-build global pinning:
@@ -114,6 +116,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
         # Intentional double-listing for conda-build global pinning:
         - glib {{ local_glib_pin }}
@@ -139,6 +142,7 @@ outputs:
       # include build and host requirements to get proper build string
       build:
         - {{ compiler('c') }}
+        - {{ stdlib('c') }}
       host:
         - cairo
         # Intentional double-listing for conda-build global pinning:
