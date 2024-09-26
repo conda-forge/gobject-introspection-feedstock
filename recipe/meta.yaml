@@ -16,13 +16,8 @@ source:
   patches:
     - cross-compile.patch
     - test-fix-linux.patch  # [linux]
-    - test-fix-osx.patch  # [osx]
     # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/265
     - pkg-config.patch
-    # Ensure compatibility with setuptools >=74
-    # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/490
-    # https://github.com/conda-forge/gobject-introspection-feedstock/issues/77
-    - 490.patch
 
 build:
   number: 1
