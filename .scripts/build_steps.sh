@@ -57,7 +57,6 @@ ulimit -n 1024
 /usr/bin/sudo -n yum install -y libX11 libXcomposite libXcursor libXdamage libXext libXfixes libXi libXinerama libXrandr
 )
 
-
 # make the build number clobber
 make_build_number "${FEEDSTOCK_ROOT}" "${RECIPE_ROOT}" "${CONFIG_FILE}"
 
