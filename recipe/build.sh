@@ -46,8 +46,13 @@ fi
 
 mkdir forgebuild
 cd forgebuild
-meson ${MESON_ARGS} --buildtype=release --prefix="$PREFIX" --backend=ninja -Dlibdir=lib \
-      -Dcairo=enabled -Dpython="$PYTHON" ..
+meson ${MESON_ARGS} \
+    --prefix="$PREFIX" \
+    --backend=ninja \
+    -Dlibdir=lib \
+    -Dcairo=enabled \
+    -Dpython="$PYTHON" \
+    ..
 ninja -v
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" != 1 ]]; then
   ninja test
