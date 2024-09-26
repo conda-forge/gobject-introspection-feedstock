@@ -1,0 +1,13 @@
+diff --git a/tests/repository/meson.build b/tests/repository/meson.build
+index 276b442..c9d7359 100644
+--- a/tests/repository/meson.build
++++ b/tests/repository/meson.build
+@@ -15,7 +15,7 @@ if glib_dep.type_name() == 'pkgconfig'
+     join_paths(build_root, 'tests', 'scanner'),
+   )
+   repository_test_env.prepend(
+-    'LD_LIBRARY_PATH',
++    'DYLD_LIBRARY_PATH',
+     join_paths(build_root, 'tests', 'scanner'),
+   )
+   if host_system == 'windows'
