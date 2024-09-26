@@ -14,7 +14,8 @@ source:
   sha256: a1df7c424e15bda1ab639c00e9051b9adf5cea1a9e512f8a603b53cd199bc6d8
   patches:
     - cross-compile.patch
-    - test-fix.patch  # [linux]
+    - test-fix-linux.patch  # [linux]
+    - test-fix-osx.patch  # [osx]
     # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/265
     - pkg-config.patch
     # Ensure compatibility with setuptools >=74
