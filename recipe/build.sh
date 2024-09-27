@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 set -ex
 
@@ -28,7 +28,7 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     unset CFLAGS
     unset CPPFLAGS
 
-    $BUILD_PREFIX/bin/python3 $(which meson) --buildtype=release --prefix="$BUILD_PREFIX" --backend=ninja -Dlibdir=lib \
+    $BUILD_PREFIX/bin/python3 $(which meson) --prefix="$BUILD_PREFIX" --backend=ninja -Dlibdir=lib \
           -Dcairo=enabled -Dpython="$BUILD_PREFIX/bin/python3" ..
 
     # This script would generate the functions.txt and dump.xml and save them
