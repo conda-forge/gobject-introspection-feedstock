@@ -1,5 +1,6 @@
+{% set local_glib_pin = ">=2.82" %}
 {% set name = "gobject-introspection" %}
-{% set version = "1.82.0" %}
+{% set version = "1.84.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 {% set prefix = 'Library/' if win else '' %}
@@ -11,7 +12,7 @@ package:
 
 source:
   url: https://download.gnome.org/sources/{{ name }}/{{ '.'.join(version.split('.')[:2]) }}/{{ name }}-{{ version }}.tar.xz
-  sha256: 0f5a4c1908424bf26bc41e9361168c363685080fbdb87a196c891c8401ca2f09
+  sha256: 945b57da7ec262e5c266b89e091d14be800cc424277d82a02872b7d794a84779
   patches:
     - cross-compile.patch
     - test-fix-linux.patch  # [linux]
