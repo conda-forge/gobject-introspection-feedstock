@@ -1,0 +1,17 @@
+diff --git a/tools/meson.build b/tools/meson.build
+index c243c8b..7c0d444 100644
+--- a/tools/meson.build
++++ b/tools/meson.build
+@@ -9,11 +9,7 @@ if with_doctool
+   tools += [['g-ir-doc-tool', 'docmain', 'doc_main']]
+ endif
+ 
+-if not python.full_path().startswith('/usr/bin')
+-  python_cmd = '/usr/bin/env ' + python.full_path()
+-else
+-  python_cmd = '/usr/bin/env python@0@'.format(python.language_version().split('.')[0])
+-endif
++python_cmd = '/usr/bin/env python@0@'.format(python.language_version().split('.')[0])
+ 
+ tool_output = []
+ foreach tool : tools
