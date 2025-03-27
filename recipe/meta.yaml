@@ -17,6 +17,7 @@ source:
     - test-fix-linux.patch  # [linux]
     # https://gitlab.gnome.org/GNOME/gobject-introspection/-/merge_requests/265
     - pkg-config.patch
+    - python-hashbang.patch
 
 build:
   number: 0
