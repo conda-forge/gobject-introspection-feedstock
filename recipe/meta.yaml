@@ -35,12 +35,16 @@ requirements:
     - {{ stdlib('c') }}
     # This dep is intentionally written twice; the second time allows
     # conda-build to add a global pin if needed.
+    - expat                      # [build_platform != target_platform]
     - glib {{ local_glib_pin }}  # [build_platform != target_platform]
     - glib                       # [build_platform != target_platform]
     - cairo                      # [build_platform != target_platform]
     - libffi                     # [build_platform != target_platform]
+    - xorg-xorgproto             # [build_platform != target_platform]
+    - zlib                       # [build_platform != target_platform]
   host:
     - cairo
+    - expat
     # Intentional double-listing for conda-build global pinning:
     - glib {{ local_glib_pin }}
     - glib
@@ -48,6 +52,8 @@ requirements:
     - packaging
     - python
     - setuptools  # [py>311]
+    - xorg-xorgproto
+    - zlib
 
 outputs:
   - name: libgirepository
