@@ -4,7 +4,6 @@
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 {% set prefix = 'Library/' if win else '' %}
-{% set local_glib_pin = '>=2.82' %}
 
 package:
   name: {{ name|lower }}-split
