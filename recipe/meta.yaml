@@ -20,7 +20,7 @@ source:
     - python-hashbang.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -60,13 +60,9 @@ outputs:
   - name: libgirepository
     files:
       - {{ prefix }}lib/girepository-1.0
-      - {{ prefix }}lib/girepository-2.0
       - {{ prefix }}lib/libgirepository-1.0*  # [not win]
-      - {{ prefix }}lib/libgirepository-2.0*  # [not win]
       - {{ prefix }}bin/girepository-1.0*.dll  # [win]
-      - {{ prefix }}bin/girepository-2.0*.dll  # [win]
       - {{ prefix }}lib/girepository-1.0.lib  # [win]
-      - {{ prefix }}lib/girepository-2.0.lib  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
@@ -82,11 +78,8 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/libgirepository-1.0${SHLIB_EXT}  # [not win]
-        - test -f $PREFIX/lib/libgirepository-2.0${SHLIB_EXT}  # [not win]
         - if not exist %PREFIX%\Library\bin\girepository-1.0-1.dll exit 1  # [win]
-        - if not exist %PREFIX%\Library\bin\girepository-2.0-0.dll exit 1  # [win]
         - if not exist %PREFIX%\Library\lib\girepository-1.0.lib exit 1  # [win]
-        - if not exist %PREFIX%\Library\lib\girepository-2.0.lib exit 1  # [win]
 
   - name: g-ir-build-tools
     files:
@@ -122,9 +115,6 @@ outputs:
       - {{ prefix }}bin/g-ir-compiler*
       - {{ prefix }}bin/g-ir-generate*
       - {{ prefix }}bin/g-ir-inspect*
-      - {{ prefix }}bin/gi-compile-repository*
-      - {{ prefix }}bin/gi-decompile-typelib*
-      - {{ prefix }}bin/gi-inspect-typelib*
       - {{ prefix }}share/man/man1/g-ir-compiler.1
       - {{ prefix }}share/man/man1/g-ir-generate.1
     requirements:
@@ -147,7 +137,6 @@ outputs:
     files:
       - {{ prefix }}include/gobject-introspection-1.0
       - {{ prefix }}lib/pkgconfig/gobject-introspection*.pc
-      - {{ prefix }}lib/pkgconfig/girepository-2.0*.pc
       - {{ prefix }}libexec/gi-cross-launcher-load.sh  # [not win]
       - {{ prefix }}libexec/gi-cross-launcher-save.sh  # [not win]
       - {{ prefix }}share/aclocal/introspection.m4
