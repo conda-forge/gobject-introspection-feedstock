@@ -1,13 +1,15 @@
 c_compiler:
-- vs2019
+- vs2022
 c_stdlib:
 - vs
 cairo:
 - '1'
 channel_sources:
-- conda-forge
+- conda-forge/label/python_rc,conda-forge
 channel_targets:
 - conda-forge main
+expat:
+- '2'
 glib:
 - '2'
 libffi:
@@ -17,6 +19,11 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.14.* *_cp314
 target_platform:
 - win-64
+zip_keys:
+- - python
+  - channel_sources
+zlib:
+- '1'

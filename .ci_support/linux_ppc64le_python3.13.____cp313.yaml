@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '13'
+- '14'
 c_stdlib:
 - sysroot
 c_stdlib_version:
@@ -16,6 +16,8 @@ channel_targets:
 - conda-forge main
 docker_image:
 - quay.io/condaforge/linux-anvil-ppc64le:alma9
+expat:
+- '2'
 glib:
 - '2'
 libffi:
@@ -28,3 +30,8 @@ python:
 - 3.13.* *_cp313
 target_platform:
 - linux-ppc64le
+zip_keys:
+- - python
+  - channel_sources
+zlib:
+- '1'
