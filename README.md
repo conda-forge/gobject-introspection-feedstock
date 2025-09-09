@@ -3,7 +3,7 @@ About gobject-introspection-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gobject-introspection-feedstock/blob/main/LICENSE.txt)
 
-Home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
+Home: https://gi.readthedocs.io
 
 Package license: LGPL-2.0-or-later
 
