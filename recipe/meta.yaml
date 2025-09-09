@@ -20,7 +20,7 @@ source:
     - python-hashbang.patch
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
