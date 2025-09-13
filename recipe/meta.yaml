@@ -1,6 +1,7 @@
 {% set local_glib_pin = ">=2.82" %}
+{% set local_glib_pin = ">=2.82" %}
 {% set name = "gobject-introspection" %}
-{% set version = "1.84.0" %}
+{% set version = "1.86.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 {% set prefix = 'Library/' if win else '' %}
@@ -11,7 +12,7 @@ package:
 
 source:
   url: https://download.gnome.org/sources/{{ name }}/{{ '.'.join(version.split('.')[:2]) }}/{{ name }}-{{ version }}.tar.xz
-  sha256: 945b57da7ec262e5c266b89e091d14be800cc424277d82a02872b7d794a84779
+  sha256: 920d1a3fcedeadc32acff95c2e203b319039dd4b4a08dd1a2dfd283d19c0b9ae
   patches:
     - cross-compile.patch
     - test-fix-linux.patch  # [linux]
@@ -20,7 +21,7 @@ source:
     - python-hashbang.patch
 
 build:
-  number: 3
+  number: 0
 
 requirements:
   build:
