@@ -13,7 +13,7 @@ c_stdlib_version:
 cairo:
 - '1'
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge main
 expat:
@@ -21,7 +21,7 @@ expat:
 glib:
 - '2'
 libffi:
-- '3.4'
+- '3.5'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pin_run_as_build:
@@ -32,8 +32,5 @@ python:
 - 3.14.* *_cp314
 target_platform:
 - osx-64
-zip_keys:
-- - python
-  - channel_sources
 zlib:
 - '1'
