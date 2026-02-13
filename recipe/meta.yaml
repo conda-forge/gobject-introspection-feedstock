@@ -5,6 +5,16 @@
 {% set native = 'm2w64-' if win else '' %}
 {% set prefix = 'Library/' if win else '' %}
 
+# At build time there's currently a circular dependency between this package and
+# glib. The tools in this package depend on glib, but glib needs our tools
+# (namely g-ir-scanner) in order to generate its introspection metadata. We
+# handle this during the glib build by installing a preexisting
+# gobject-introspection package.
+#
+# Work is in progress to break the circular dependency. As part of that work,
+# glib now provides a libgirepository-2.0 library (in the `libglib` package).
+# This is confusing since this package provides libgirepository-1.0.
+
 package:
   name: {{ name|lower }}-split
   version: {{ version }}
@@ -21,7 +31,7 @@ source:
     - setuptools-compat.patch
 
 build:
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -35,9 +45,9 @@ requirements:
     - {{ native }}pkg-config
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
+    - expat                      # [build_platform != target_platform]
     # This dep is intentionally written twice; the second time allows
     # conda-build to add a global pin if needed.
-    - expat                      # [build_platform != target_platform]
     - glib {{ local_glib_pin }}  # [build_platform != target_platform]
     - glib                       # [build_platform != target_platform]
     - cairo                      # [build_platform != target_platform]
