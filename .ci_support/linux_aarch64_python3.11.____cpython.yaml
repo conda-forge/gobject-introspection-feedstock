@@ -4,8 +4,6 @@ c_compiler_version:
 - '14'
 c_stdlib:
 - sysroot
-c_stdlib_version:
-- '2.17'
 cairo:
 - '1'
 channel_sources:
@@ -15,6 +13,8 @@ channel_targets:
 docker_image:
 - quay.io/condaforge/linux-anvil-aarch64:alma10
 expat:
+- '2'
+freetype:
 - '2'
 glib:
 - '2'
