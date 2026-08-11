@@ -35,9 +35,10 @@ requirements:
     - {{ native }}pkg-config
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    # This dep is intentionally written twice; the second time allows
+    # The glib dep is intentionally written twice; the second time allows
     # conda-build to add a global pin if needed.
     - expat                      # [build_platform != target_platform]
+    - freetype                   # [build_platform != target_platform]
     - glib {{ local_glib_pin }}  # [build_platform != target_platform]
     - glib                       # [build_platform != target_platform]
     - cairo                      # [build_platform != target_platform]
@@ -48,6 +49,7 @@ requirements:
   host:
     - cairo
     - expat
+    - freetype
     # Intentional double-listing for conda-build global pinning:
     - glib {{ local_glib_pin }}
     - glib
