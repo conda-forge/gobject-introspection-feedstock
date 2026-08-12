@@ -43,7 +43,7 @@ requirements:
     - glib                       # [build_platform != target_platform]
     - cairo                      # [build_platform != target_platform]
     - libffi                     # [build_platform != target_platform]
-    - setuptools  # [py>311]
+    - setuptools <84  # [py>311] -- see upstream issue #575
     - xorg-xorgproto             # [build_platform != target_platform]
     - zlib                       # [build_platform != target_platform]
   host:
@@ -56,7 +56,7 @@ requirements:
     - libffi
     - packaging
     - python
-    - setuptools  # [py>311]
+    - setuptools <84  # [py>311] -- see upstream issue #575
     - xorg-xorgproto
     - zlib
 
