@@ -10,6 +10,7 @@ fi
 mkdir -p $PREFIX/libexec
 cp $RECIPE_DIR/load.sh $PREFIX/libexec/gi-cross-launcher-load.sh
 cp $RECIPE_DIR/save.sh $PREFIX/libexec/gi-cross-launcher-save.sh
+cp $RECIPE_DIR/ldd.sh $PREFIX/libexec/gi-cross-ldd-wrapper.sh
 
 export PKG_CONFIG=$BUILD_PREFIX/bin/pkg-config
 
@@ -42,6 +43,10 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
   )
   export GI_CROSS_LAUNCHER=$PREFIX/libexec/gi-cross-launcher-load.sh
   MESON_ARGS="-Dgi_cross_use_prebuilt_gi=True ${MESON_ARGS}"
+  if [[ "$target_platform" == linux-* ]]; then
+    # The build machine ldd cannot read the target ELF that g-ir-scanner links
+    MESON_ARGS="-Dgi_cross_ldd_wrapper=$PREFIX/libexec/gi-cross-ldd-wrapper.sh ${MESON_ARGS}"
+  fi
 fi
 
 mkdir forgebuild
