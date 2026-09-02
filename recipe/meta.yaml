@@ -21,7 +21,7 @@ source:
     - setuptools-compat.patch
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -160,6 +160,7 @@ outputs:
       - {{ prefix }}lib/pkgconfig/gobject-introspection*.pc
       - {{ prefix }}libexec/gi-cross-launcher-load.sh  # [not win]
       - {{ prefix }}libexec/gi-cross-launcher-save.sh  # [not win]
+      - {{ prefix }}libexec/gi-cross-ldd-wrapper.sh  # [not win]
       - {{ prefix }}share/aclocal/introspection.m4
       # See remark above about a similar big batch of files:
       - {{ prefix }}share/gir-1.0/DBus-1.0.gir
