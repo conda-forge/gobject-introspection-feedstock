@@ -5,6 +5,9 @@ set "SMOKE_BUILD=%CD%\gi-smoke-build"
 set "PATH=%SMOKE_BUILD%;%PREFIX%\Library\bin;%PATH%"
 set "PKG_CONFIG_PATH=%PREFIX%\Library\lib\pkgconfig;%PREFIX%\Library\share\pkgconfig;%PKG_CONFIG_PATH%"
 
+pkg-config --print-errors --exists gobject-2.0 gio-2.0 gmodule-2.0
+if errorlevel 1 exit /b 1
+
 cmake -S "%~dp0." -B "%SMOKE_BUILD%" -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="%PREFIX%\Library"
 if errorlevel 1 exit /b 1
 

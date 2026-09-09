@@ -226,6 +226,7 @@ outputs:
         - {{ stdlib('c') }}  # [target_platform == "win-arm64"]
         - cmake  # [target_platform == "win-arm64"]
         - glib  # [target_platform == "win-arm64"]
+        - zlib  # [target_platform == "win-arm64"]
         - pkg-config
       commands:
         # check that g-ir-scanner can be found through pkg-config (used by downstream builds)
