@@ -5,7 +5,7 @@ set "SMOKE_BUILD=%CD%\gi-smoke-build"
 set "PATH=%SMOKE_BUILD%;%PREFIX%\Library\bin;%PATH%"
 set "PKG_CONFIG_PATH=%PREFIX%\Library\lib\pkgconfig;%PREFIX%\Library\share\pkgconfig;%PKG_CONFIG_PATH%"
 
-cmake -S "%~dp0" -B "%SMOKE_BUILD%" -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="%PREFIX%\Library"
+cmake -S "%~dp0." -B "%SMOKE_BUILD%" -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="%PREFIX%\Library"
 if errorlevel 1 exit /b 1
 
 cmake --build "%SMOKE_BUILD%" --config Release --verbose
@@ -27,7 +27,7 @@ python "%PREFIX%\Library\bin\g-ir-scanner" ^
   --library-path="%SMOKE_BUILD%" ^
   --c-include=condagismoke.h ^
   --output="%SMOKE_BUILD%\CondaGISmoke-1.0.gir" ^
-  -I"%~dp0" ^
+  -I"%~dp0." ^
   "%~dp0condagismoke.h" ^
   "%~dp0condagismoke.c"
 if errorlevel 1 exit /b 1
