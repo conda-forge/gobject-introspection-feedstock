@@ -27,8 +27,9 @@ requirements:
   build:
     - python {{ python }}
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - {{ posix }}bison
-    - {{ posix }}flex
+    - winflexbison  # [target_platform == "win-arm64"]
+    - {{ posix }}bison  # [target_platform != "win-arm64"]
+    - {{ posix }}flex  # [target_platform != "win-arm64"]
     - meson >=1.4.0
     - ninja
     - {{ posix }}patch
