@@ -21,18 +21,20 @@ source:
     - setuptools-compat.patch
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
     - python {{ python }}
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - {{ posix }}bison
-    - {{ posix }}flex
+    - winflexbison  # [target_platform == "win-arm64"]
+    - {{ posix }}bison  # [target_platform != "win-arm64"]
+    - {{ posix }}flex  # [target_platform != "win-arm64"]
     - meson >=1.4.0
     - ninja
     - {{ posix }}patch
-    - {{ native }}pkg-config
+    - pkg-config  # [target_platform == "win-arm64"]
+    - {{ native }}pkg-config  # [target_platform != "win-arm64"]
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     # The glib dep is intentionally written twice; the second time allows
@@ -97,10 +99,15 @@ outputs:
       run:
         - libffi
     test:
+      files:
+        - check-pe-aa64.py  # [target_platform == "win-arm64"]
+      requires:
+        - python  # [target_platform == "win-arm64"]
       commands:
         - test -f $PREFIX/lib/libgirepository-1.0${SHLIB_EXT}  # [not win]
         - if not exist %PREFIX%\Library\bin\girepository-1.0-1.dll exit 1  # [win]
         - if not exist %PREFIX%\Library\lib\girepository-1.0.lib exit 1  # [win]
+        - python check-pe-aa64.py "%PREFIX%\Library\bin\girepository-1.0-1.dll"  # [target_platform == "win-arm64"]
 
   - name: g-ir-build-tools
     files:
@@ -127,9 +134,12 @@ outputs:
         # run-dep as a workaround for now; upstream package still imports from distutils
         - setuptools  # [py>311]
     test:
+      files:
+        - check-pe-aa64.py  # [target_platform == "win-arm64"]
       commands:
         - g-ir-scanner --help  # [not win]
         - python "%PREFIX%\\Library\\bin\\g-ir-scanner" --help  # [win]
+        - python check-pe-aa64.py "%PREFIX%\Library\lib\gobject-introspection\giscanner\_giscanner*.pyd"  # [target_platform == "win-arm64"]
 
   - name: g-ir-host-tools
     files:
@@ -151,8 +161,13 @@ outputs:
       run:
         - {{ pin_subpackage('libgirepository', exact=True) }}
     test:
+      files:
+        - check-pe-aa64.py  # [target_platform == "win-arm64"]
+      requires:
+        - python  # [target_platform == "win-arm64"]
       commands:
         - g-ir-compiler --help
+        - python check-pe-aa64.py "%PREFIX%\Library\bin\g-ir-compiler.exe" "%PREFIX%\Library\bin\g-ir-generate.exe" "%PREFIX%\Library\bin\g-ir-inspect.exe"  # [target_platform == "win-arm64"]
 
   - name: gobject-introspection
     files:
@@ -199,12 +214,25 @@ outputs:
         - libffi
         - python
     test:
+      files:
+        - check-pe-aa64.py  # [target_platform == "win-arm64"]
+        - CMakeLists.txt  # [target_platform == "win-arm64"]
+        - condagismoke.c  # [target_platform == "win-arm64"]
+        - condagismoke.h  # [target_platform == "win-arm64"]
+        - consumer.c  # [target_platform == "win-arm64"]
+        - test-introspection.bat  # [target_platform == "win-arm64"]
       requires:
+        - {{ compiler('c') }}  # [target_platform == "win-arm64"]
+        - {{ stdlib('c') }}  # [target_platform == "win-arm64"]
+        - cmake  # [target_platform == "win-arm64"]
+        - glib  # [target_platform == "win-arm64"]
+        - zlib  # [target_platform == "win-arm64"]
         - pkg-config
       commands:
         # check that g-ir-scanner can be found through pkg-config (used by downstream builds)
         - test -f `pkg-config --variable=g_ir_scanner --dont-define-prefix gobject-introspection-1.0`  # [unix]
         - for /f "usebackq tokens=*" %%a in (`pkg-config --variable=g_ir_scanner --dont-define-prefix gobject-introspection-1.0`) do if not exist "%%a" exit 1  # [win]
+        - call test-introspection.bat  # [target_platform == "win-arm64"]
 
 about:
   home: https://gi.readthedocs.io
