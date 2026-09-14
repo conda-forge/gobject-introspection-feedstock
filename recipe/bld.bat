@@ -44,8 +44,12 @@ if errorlevel 1 exit 1
 ninja -v
 if errorlevel 1 exit 1
 
+:: Parallel scanner tests share a cache-version file that can be locked on Windows.
+setlocal
+set "GI_SCANNER_DISABLE_CACHE=1"
 ninja test
 if errorlevel 1 exit 1
+endlocal
 
 ninja install
 if errorlevel 1 exit 1
