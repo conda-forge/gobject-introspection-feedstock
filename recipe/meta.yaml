@@ -21,7 +21,7 @@ source:
     - setuptools-compat.patch
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
