@@ -26,6 +26,7 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     export PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig
 
     # Keep CPPFLAGS for system include settings
+    export CPPFLAGS=${CPPFLAGS//$PREFIX/$BUILD_PREFIX}
     unset CFLAGS
 
     $BUILD_PREFIX/bin/python3 $(which meson) setup --prefix="$BUILD_PREFIX" --backend=ninja -Dlibdir=lib \
