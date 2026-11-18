@@ -21,7 +21,7 @@ source:
     - setuptools-compat.patch
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -32,7 +32,7 @@ requirements:
     - meson >=1.4.0
     - ninja
     - {{ posix }}patch
-    - {{ native }}pkg-config
+    - pkgconf
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     # The glib dep is intentionally written twice; the second time allows
@@ -122,7 +122,7 @@ outputs:
         - python
         - setuptools  # [py>311]
       run:
-        - pkg-config
+        - pkgconf
         - python
         # run-dep as a workaround for now; upstream package still imports from distutils
         - setuptools  # [py>311]
@@ -200,7 +200,7 @@ outputs:
         - python
     test:
       requires:
-        - pkg-config
+        - pkgconf
       commands:
         # check that g-ir-scanner can be found through pkg-config (used by downstream builds)
         - test -f `pkg-config --variable=g_ir_scanner --dont-define-prefix gobject-introspection-1.0`  # [unix]
