@@ -32,7 +32,7 @@ requirements:
     - meson >=1.4.0
     - ninja
     - {{ posix }}patch
-    - {{ native }}pkgconf
+    - pkgconf
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
     # The glib dep is intentionally written twice; the second time allows
