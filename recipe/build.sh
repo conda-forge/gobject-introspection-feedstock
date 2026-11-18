@@ -25,6 +25,9 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     export LDFLAGS=${LDFLAGS//$PREFIX/$BUILD_PREFIX}
     export PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig
 
+    # Keep CPPFLAGS for system include settings
+    unset CFLAGS
+
     $BUILD_PREFIX/bin/python3 $(which meson) setup --prefix="$BUILD_PREFIX" --backend=ninja -Dlibdir=lib \
           -Dcairo=enabled -Dpython="$BUILD_PREFIX/bin/python3" ..
 
